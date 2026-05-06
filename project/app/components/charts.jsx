@@ -69,7 +69,7 @@ function Chart({ title, series, yUnit, timeLabels, timestamps, period, height = 
 
   return (
     <div className="bg-white/95 backdrop-blur-[10px] rounded-[24px] shadow-[0_6px_24px_rgba(0,0,0,0.18)] w-full overflow-hidden flex flex-col">
-      <div className="flex items-center justify-between px-[28px] pt-[10px] pb-[4px]">
+      <div className="flex items-center justify-between px-[28px] pt-[6px] pb-[2px]">
         <p className="font-['Wix_Madefor_Display'] font-medium text-[16px] text-black">{title}</p>
         <div className="flex gap-[16px]">
           {series.map((s, i) => (
@@ -246,19 +246,19 @@ function ChartsSection() {
   const tLabels = cs_lbls(ts, period);
 
   return (
-    <div className="flex flex-col gap-[10px] items-stretch w-full pt-[14px] pb-[12px] px-[16px] rounded-[36px]"
+    <div className="flex flex-col gap-[8px] items-stretch w-full h-full pt-[10px] pb-[8px] px-[16px] rounded-[36px]"
       style={{ backgroundImage: "linear-gradient(-75.6336deg, rgba(0, 0, 0, 0.31) 4.5812%, rgba(84, 146, 169, 0.23) 97.952%)" }}>
       <PeriodBar active={period} setActive={setPeriod} />
-      <div className="flex flex-col gap-[8px]">
-        <Chart title="Температура" yUnit="°C" period={period} timestamps={ts} timeLabels={tLabels} height={120}
+      <div className="flex flex-col gap-[6px]">
+        <Chart title="Температура" yUnit="°C" period={period} timestamps={ts} timeLabels={tLabels} height={118}
           series={[
             { data: slice(fullData.temp1), stroke: "#E44E85", label: "Датчик 1" },
             { data: slice(fullData.temp2), stroke: "#FFC53D", label: "Датчик 2" },
             { data: slice(fullData.temp3), stroke: "#368CE2", label: "Датчик 3" },
           ]} />
-        <Chart title="Влажность" yUnit="%" period={period} timestamps={ts} timeLabels={tLabels} height={100}
+        <Chart title="Влажность" yUnit="%" period={period} timestamps={ts} timeLabels={tLabels} height={96}
           series={[{ data: slice(fullData.humidity), stroke: "#00C3D0", label: "Влажность" }]} />
-        <Chart title="Вентиляторы" yUnit="rpm" period={period} timestamps={ts} timeLabels={tLabels} height={120}
+        <Chart title="Вентиляторы" yUnit="rpm" period={period} timestamps={ts} timeLabels={tLabels} height={118}
           series={[
             { data: slice(fullData.fan1), stroke: "#FF8D28", label: "Вент. 1" },
             { data: slice(fullData.fan2), stroke: "#DAFF33", label: "Вент. 2" },

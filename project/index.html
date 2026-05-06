@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <style>
   html, body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
   /* Map Figma-style font class names to real font families */
@@ -23,6 +24,10 @@
   .surdis-thinscroll::-webkit-scrollbar-thumb { background: rgba(122,122,122,0.35); border-radius: 999px; }
   .surdis-thinscroll::-webkit-scrollbar-thumb:hover { background: #DAFF33; }
   .surdis-thinscroll { scrollbar-width: thin; scrollbar-color: rgba(122,122,122,0.35) transparent; }
+  /* Mobile: drop the fixed-canvas scaling, allow normal flow + scrolling */
+  body.mobile, body.mobile html { overflow: auto !important; }
+  body.mobile #stage { position: static !important; display: block !important; overflow: visible !important; }
+  body.mobile #canvas { width: 100% !important; height: auto !important; transform: none !important; }
 </style>
 </head>
 <body>
@@ -55,11 +60,13 @@
       'app/components/users-page.jsx',
       'app/components/network-page.jsx',
       'app/components/system-page.jsx',
+      'app/components/mobile-dashboard.jsx',
       'app/dashboard.jsx',
     ];
+    const cacheBust = '?v=' + Date.now();
     for (const f of files) {
       try {
-        const src = await (await fetch(f)).text();
+        const src = await (await fetch(f + cacheBust, { cache: 'no-store' })).text();
         const out = Babel.transform(src, { presets: ['react'], filename: f }).code;
         (0, eval)(out);
       } catch (e) {
@@ -71,26 +78,33 @@
   })();
 </script>
 <script type="text/babel" data-presets="react">
+  const MOBILE_BREAKPOINT = 768;
   function App() {
-    const [scale, setScale] = React.useState(1);
+    const [isMobile, setIsMobile] = React.useState(window.innerWidth < MOBILE_BREAKPOINT);
     React.useEffect(() => {
       const update = () => {
-        const sx = window.innerWidth / 1920;
-        const sy = window.innerHeight / 1080;
-        const s = Math.min(sx, sy);
-        setScale(s);
+        const mobile = window.innerWidth < MOBILE_BREAKPOINT;
+        setIsMobile(mobile);
+        document.body.classList.toggle('mobile', mobile);
         const c = document.getElementById('canvas');
-        if (c) c.style.transform = `scale(${s})`;
+        if (!c) return;
+        if (mobile) {
+          c.style.transform = '';
+        } else {
+          const sx = window.innerWidth / 1920;
+          const sy = window.innerHeight / 1080;
+          c.style.transform = `scale(${Math.min(sx, sy)})`;
+        }
       };
       update();
       window.addEventListener('resize', update);
       return () => window.removeEventListener('resize', update);
     }, []);
-    return <Dashboard />;
+    return isMobile ? <MobileDashboard /> : <Dashboard />;
   }
-  // Wait for dashboard.jsx to finish defining Dashboard
+  // Wait for modules to finish loading
   function mount() {
-    if (!window.__dashboardReady || typeof Dashboard === 'undefined') { setTimeout(mount, 50); return; }
+    if (!window.__dashboardReady || typeof Dashboard === 'undefined' || typeof MobileDashboard === 'undefined') { setTimeout(mount, 50); return; }
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   }
   mount();

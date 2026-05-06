@@ -40,8 +40,10 @@ function DashboardShell() {
       <div className="absolute top-[88px] left-0 right-0 bottom-0 px-[32px] py-[16px] overflow-hidden">
         {activeNav === "Dashboard" && (
           <div key="dashboard" className="flex flex-col gap-[16px] h-full">
-            <ChartsSection />
-            <div className="flex gap-[27px] items-stretch">
+            <div className="flex-1 min-h-0 overflow-hidden">
+              <ChartsSection />
+            </div>
+            <div className="flex gap-[27px] items-stretch flex-none">
               <StatusCardsGrid alarms={alarms} />
               <DoorAndHardware />
               <EventLog events={events.slice(0, 10)} />

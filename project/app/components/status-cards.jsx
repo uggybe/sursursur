@@ -68,7 +68,7 @@ function StatusTable({ data, isOpen }) {
           className="absolute left-0 right-0 bottom-full z-50 mb-[8px]"
           style={{ willChange: "transform, opacity" }}
         >
-          <div className="bg-white/97 backdrop-blur-[10px] rounded-[18px] shadow-[0px_10px_28px_rgba(0,0,0,0.28)] p-[16px] border border-black/5">
+          <div className="bg-white rounded-[18px] shadow-[0px_10px_28px_rgba(0,0,0,0.28)] p-[16px] border border-black/5">
             <table className="w-full">
               <thead>
                 <tr>
@@ -112,7 +112,7 @@ function StatusCard({ id, title, value, alarm, openCard, setOpenCard, IconBig, M
           <div className="flex gap-[10px] items-center">
             <ScMotion.div
               animate={alarm ? { opacity: [1, 0.3, 1] } : { opacity: 1 }}
-              transition={alarm ? { duration: 1, repeat: Infinity, ease: "linear" } : { duration: 0.3 }}
+              transition={alarm ? { duration: 0.5, repeat: Infinity, ease: "linear" } : { duration: 0.3 }}
             >
               <MiniIcon color={headerColor} />
             </ScMotion.div>

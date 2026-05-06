@@ -22,7 +22,7 @@ function Toggle({ on, onChange, label }) {
       <span className="font-['Wix_Madefor_Display'] font-medium text-[15px] text-black">{label}</span>
       <span className={`relative w-[44px] h-[24px] rounded-full transition-colors ${on ? "bg-[#DAFF33]" : "bg-[#16141f]/15"}`}>
         <NwMotion.span layout transition={{ type: "spring", stiffness: 600, damping: 30 }}
-          className={`absolute top-[2px] size-[20px] rounded-full ${on ? "bg-[#16141f] left-[22px]" : "bg-white left-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.2)]"}`} />
+          className={`absolute top-[2px] size-[20px] rounded-full ${on ? "bg-[#363535] left-[22px]" : "bg-white left-[2px] shadow-[0_1px_3px_rgba(0,0,0,0.2)]"}`} />
       </span>
     </button>
   );
@@ -43,11 +43,11 @@ function NetworkPage() {
   return (
     <div className="flex flex-col gap-[20px] w-full">
       <div>
-        <p className="font-['Wix_Madefor_Display'] font-bold text-[28px] text-black">Сеть</p>
-        <p className="font-['Wix_Madefor_Display'] text-[15px] text-[#16141f]/60">Сетевые настройки контроллера и Modbus TCP</p>
+        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-black">Сеть</p>
+        <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#16141f]/60">Сетевые настройки контроллера и Modbus TCP</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-[20px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
         {/* Left card: IPv4 */}
         <div className="bg-white/95 backdrop-blur-[10px] rounded-[28px] p-[28px] shadow-[0_8px_28px_rgba(0,0,0,0.10)]">
           <div className="flex items-center justify-between mb-[18px]">
@@ -67,13 +67,13 @@ function NetworkPage() {
             <p className="font-['Wix_Madefor_Display'] font-bold text-[18px] text-black mb-[18px]">Modbus TCP</p>
             <div className="flex flex-col gap-[14px]">
               <Field label="Порт" value={port} onChange={setPort} mono />
-              <div className="bg-[#16141f] text-white rounded-[14px] px-[16px] py-[14px] flex items-center gap-[12px]">
+              <div className="bg-[#363535] text-white rounded-[14px] px-[16px] py-[14px] flex items-center gap-[12px]">
                 <span className="size-[8px] rounded-full bg-[#A8E000] animate-pulse" />
                 <span className="font-mono text-[13px]">listening on tcp://{ip}:{port}</span>
               </div>
             </div>
           </div>
-          <div className="bg-[#16141f] text-white rounded-[28px] p-[24px]">
+          <div className="bg-[#363535] text-white rounded-[28px] p-[24px]">
             <p className="font-['Wix_Madefor_Display'] text-[12px] uppercase tracking-wide text-white/50 mb-[10px]">Текущее состояние</p>
             <div className="grid grid-cols-2 gap-y-[6px] font-mono text-[13px]">
               <span className="text-white/50">MAC</span>      <span>00:1A:2B:3C:4D:5E</span>

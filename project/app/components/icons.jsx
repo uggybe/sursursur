@@ -6,7 +6,7 @@ function AlarmWrap({ alarm, color, alarmColor, children, filterId }) {
   return (
     <motionIcons.g
       animate={alarm ? { opacity: [1, 0.3, 1] } : { opacity: 1 }}
-      transition={alarm ? { duration: 1, repeat: Infinity, ease: "linear" } : { duration: 0.3 }}
+      transition={alarm ? { duration: 0.5, repeat: Infinity, ease: "linear" } : { duration: 0.3 }}
     >
       {children(alarm ? alarmColor : color)}
     </motionIcons.g>

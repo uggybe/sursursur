@@ -40,16 +40,16 @@ function useEventStore(maxLen = 200) {
   return events;
 }
 
-const LEVEL_COLOR = { INFO: "#7DD3FC", WARN: "#FACC15", ERROR: "#FF6B6B" };
+const LEVEL_COLOR = { INFO: "#A8E000", WARN: "#FFC53D", ERROR: "#FF3B3B" };
 
 function EventRow({ ev, large }) {
   const c = LEVEL_COLOR[ev.level];
   return (
     <div className="flex gap-[10px] items-baseline font-mono leading-[1.55]" style={{ fontSize: large ? 14 : 13 }}>
-      <span className="text-[#6b6b6b] tabular-nums">[{ev.time}]</span>
+      <span className="text-[#9a9a9a] tabular-nums">[{ev.time}]</span>
       <span className="font-bold tabular-nums" style={{ color: c, minWidth: 56, display: "inline-block" }}>{ev.level}</span>
-      <span className="text-[#9ca3af]" style={{ minWidth: 90 }}>{ev.source}</span>
-      <span className="text-[#e5e7eb]">{ev.msg}</span>
+      <span className="text-[#bcbcbc]" style={{ minWidth: 90 }}>{ev.source}</span>
+      <span className="text-white">{ev.msg}</span>
     </div>
   );
 }
@@ -71,7 +71,7 @@ function EventLog({ events }) {
           <span className="flex items-center gap-[5px]"><span className="size-[8px] rounded-full" style={{ background: LEVEL_COLOR.ERROR }}/><span className="text-white/70">ERROR</span></span>
         </div>
       </div>
-      <div className="flex-1 bg-[#0e0e10] rounded-[18px] overflow-hidden border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+      <div className="flex-1 bg-[#363535] rounded-[18px] overflow-hidden border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <div className="size-full overflow-auto px-[18px] py-[14px] surdis-thinscroll">
           <ElAnim initial={false}>
             {events.map(ev => (

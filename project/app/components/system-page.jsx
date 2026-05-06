@@ -1,7 +1,7 @@
 /* System page: uptime, version, CPU/RAM/Disk, S/N, firmware, full log + export */
 const { useState: syUseState, useEffect: syUseEffect, useMemo: syUseMemo } = React;
 const { motion: SyMotion } = window.Motion;
-const { EventRow: syEventRow } = window.SurdisEventLog;
+const { EventRow: SyEventRow } = window.SurdisEventLog;
 
 const START_TS = Date.now() - (1000 * 60 * 60 * 26 + 1000 * 60 * 14);
 
@@ -74,13 +74,13 @@ function SystemPage({ events }) {
   return (
     <div className="flex flex-col gap-[20px] w-full">
       <div>
-        <p className="font-['Wix_Madefor_Display'] font-bold text-[28px] text-black">Система</p>
-        <p className="font-['Wix_Madefor_Display'] text-[15px] text-[#16141f]/60">Информация о контроллере и расширенный журнал событий</p>
+        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-black">Система</p>
+        <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#16141f]/60">Информация о контроллере и расширенный журнал событий</p>
       </div>
 
-      <div className="grid grid-cols-[1.4fr_1fr] gap-[20px]">
+      <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-[20px]">
         {/* Info card */}
-        <div className="bg-[#16141f] text-white rounded-[28px] p-[28px]">
+        <div className="bg-[#363535] text-white rounded-[28px] p-[20px] md:p-[28px]">
           <div className="flex items-center justify-between mb-[20px]">
             <p className="font-['Wix_Madefor_Display'] font-bold text-[18px]">Surdis Controller</p>
             <span className="font-mono text-[12px] text-[#A8E000] flex items-center gap-[6px]"><span className="size-[8px] rounded-full bg-[#A8E000] animate-pulse" />ONLINE</span>
@@ -132,18 +132,18 @@ function SystemPage({ events }) {
             <div className="flex gap-[4px] bg-[#f5f5f7] rounded-[12px] p-[3px]">
               {["ALL", "INFO", "WARN", "ERROR"].map(l => (
                 <button key={l} onClick={() => setLogFilter(l)}
-                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#16141f] text-white" : "text-[#16141f]"}`}>{l}</button>
+                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#363535] text-white" : "text-[#16141f]"}`}>{l}</button>
               ))}
             </div>
-            <button onClick={() => exportLog("csv")}  className="bg-[#16141f] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">CSV</button>
-            <button onClick={() => exportLog("json")} className="bg-[#16141f] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">JSON</button>
+            <button onClick={() => exportLog("csv")}  className="bg-[#363535] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">CSV</button>
+            <button onClick={() => exportLog("json")} className="bg-[#363535] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">JSON</button>
           </div>
         </div>
-        <div className="bg-[#0e0e10] rounded-[18px] overflow-hidden border border-white/5 h-[420px]">
+        <div className="bg-[#363535] rounded-[18px] overflow-hidden border border-white/5 h-[420px]">
           <div className="size-full overflow-auto px-[18px] py-[14px] surdis-thinscroll">
             {filtered.length === 0 ? (
               <p className="font-mono text-[13px] text-[#6b6b6b]">— нет событий —</p>
-            ) : filtered.map(ev => <syEventRow key={ev.id} ev={ev} />)}
+            ) : filtered.map(ev => <SyEventRow key={ev.id} ev={ev} />)}
           </div>
         </div>
       </div>
