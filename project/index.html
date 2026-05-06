@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<title>Surdis Dashboard — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;700&family=DM+Sans:opsz,wght@9..40,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html, body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
+  /* Map Figma-style font class names to real font families */
+  [class*="Wix_Madefor_Display"] { font-family: 'Wix Madefor Display', sans-serif !important; }
+  [class*="DM_Sans"] { font-family: 'DM Sans', sans-serif !important; }
+  [class*="Inter:"] { font-family: 'Inter', sans-serif !important; }
+  /* hide native range input track but keep the thumb interactive area */
+  input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 32px; background: rgba(54,53,53,0.9); border-radius: 4px; cursor: ew-resize; }
+  input[type=range]::-moz-range-thumb { width: 18px; height: 32px; background: rgba(54,53,53,0.9); border-radius: 4px; cursor: ew-resize; border: none; }
+  /* Thin scrollbar used in event log + tables */
+  .surdis-thinscroll::-webkit-scrollbar { width: 6px; height: 6px; }
+  .surdis-thinscroll::-webkit-scrollbar-track { background: transparent; }
+  .surdis-thinscroll::-webkit-scrollbar-thumb { background: rgba(122,122,122,0.35); border-radius: 999px; }
+  .surdis-thinscroll::-webkit-scrollbar-thumb:hover { background: #DAFF33; }
+  .surdis-thinscroll { scrollbar-width: thin; scrollbar-color: rgba(122,122,122,0.35) transparent; }
+</style>
+</head>
+<body>
+<div id="stage" style="position:fixed; inset:0; display:flex; justify-content:center; align-items:flex-start; background:#fff; overflow:hidden;">
+  <div id="canvas" style="width:1920px; height:1080px; transform-origin: top center; flex-shrink:0;">
+    <div id="root"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/framer-motion@11.18.2/dist/framer-motion.dev.js"></script>
+<script>
+  // framer-motion exposes itself as `FramerMotion` global on UMD; alias to Motion.
+  window.Motion = window.Motion || window.FramerMotion || window.framerMotion;
+</script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="app/svg-paths.js"></script>
+<script>
+  // Compile-and-eval pipeline: fetch each module, transform with Babel (react preset only — no more TS), eval in global scope
+  (async () => {
+    const files = [
+      'app/lib/data.jsx',
+      'app/components/icons.jsx',
+      'app/components/charts.jsx',
+      'app/components/status-cards.jsx',
+      'app/components/event-log.jsx',
+      'app/components/header.jsx',
+      'app/components/users-page.jsx',
+      'app/components/network-page.jsx',
+      'app/components/system-page.jsx',
+      'app/dashboard.jsx',
+    ];
+    for (const f of files) {
+      try {
+        const src = await (await fetch(f)).text();
+        const out = Babel.transform(src, { presets: ['react'], filename: f }).code;
+        (0, eval)(out);
+      } catch (e) {
+        console.error('Compile error in', f, ':', e && (e.stack || e.message || String(e)));
+        return;
+      }
+    }
+    window.__dashboardReady = true;
+  })();
+</script>
+<script type="text/babel" data-presets="react">
+  function App() {
+    const [scale, setScale] = React.useState(1);
+    React.useEffect(() => {
+      const update = () => {
+        const sx = window.innerWidth / 1920;
+        const sy = window.innerHeight / 1080;
+        const s = Math.min(sx, sy);
+        setScale(s);
+        const c = document.getElementById('canvas');
+        if (c) c.style.transform = `scale(${s})`;
+      };
+      update();
+      window.addEventListener('resize', update);
+      return () => window.removeEventListener('resize', update);
+    }, []);
+    return <Dashboard />;
+  }
+  // Wait for dashboard.jsx to finish defining Dashboard
+  function mount() {
+    if (!window.__dashboardReady || typeof Dashboard === 'undefined') { setTimeout(mount, 50); return; }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  }
+  mount();
+</script>
+</body>
+</html>
