@@ -9,29 +9,29 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <style>
-  html, body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
+  html, body { margin: 0; padding: 0; background: #161b27; overflow: hidden; }
   /* Map Figma-style font class names to real font families */
   [class*="Wix_Madefor_Display"] { font-family: 'Wix Madefor Display', sans-serif !important; }
   [class*="DM_Sans"] { font-family: 'DM Sans', sans-serif !important; }
   [class*="Inter:"] { font-family: 'Inter', sans-serif !important; }
   /* hide native range input track but keep the thumb interactive area */
   input[type=range] { -webkit-appearance: none; appearance: none; background: transparent; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 32px; background: rgba(54,53,53,0.9); border-radius: 4px; cursor: ew-resize; }
-  input[type=range]::-moz-range-thumb { width: 18px; height: 32px; background: rgba(54,53,53,0.9); border-radius: 4px; cursor: ew-resize; border: none; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 18px; height: 32px; background: rgba(17,133,230,0.9); border-radius: 4px; cursor: ew-resize; }
+  input[type=range]::-moz-range-thumb { width: 18px; height: 32px; background: rgba(17,133,230,0.9); border-radius: 4px; cursor: ew-resize; border: none; }
   /* Thin scrollbar used in event log + tables */
   .surdis-thinscroll::-webkit-scrollbar { width: 6px; height: 6px; }
   .surdis-thinscroll::-webkit-scrollbar-track { background: transparent; }
-  .surdis-thinscroll::-webkit-scrollbar-thumb { background: rgba(122,122,122,0.35); border-radius: 999px; }
-  .surdis-thinscroll::-webkit-scrollbar-thumb:hover { background: #DAFF33; }
-  .surdis-thinscroll { scrollbar-width: thin; scrollbar-color: rgba(122,122,122,0.35) transparent; }
+  .surdis-thinscroll::-webkit-scrollbar-thumb { background: rgba(138,146,163,0.35); border-radius: 999px; }
+  .surdis-thinscroll::-webkit-scrollbar-thumb:hover { background: #1185e6; }
+  .surdis-thinscroll { scrollbar-width: thin; scrollbar-color: rgba(138,146,163,0.35) transparent; }
   /* Mobile: drop the fixed-canvas scaling, allow normal flow + scrolling */
   body.mobile, body.mobile html { overflow: auto !important; }
-  body.mobile #stage { position: static !important; display: block !important; overflow: visible !important; }
+  body.mobile #stage { position: static !important; display: block !important; overflow: visible !important; background: #161b27 !important; }
   body.mobile #canvas { width: 100% !important; height: auto !important; transform: none !important; }
 </style>
 </head>
 <body>
-<div id="stage" style="position:fixed; inset:0; display:flex; justify-content:center; align-items:flex-start; background:#fff; overflow:hidden;">
+<div id="stage" style="position:fixed; inset:0; display:flex; justify-content:center; align-items:flex-start; background:#161b27; overflow:hidden;">
   <div id="canvas" style="width:1920px; height:1080px; transform-origin: top center; flex-shrink:0;">
     <div id="root"></div>
   </div>

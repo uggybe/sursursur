@@ -68,19 +68,19 @@ function StatusTable({ data, isOpen }) {
           className="absolute left-0 right-0 bottom-full z-50 mb-[8px]"
           style={{ willChange: "transform, opacity" }}
         >
-          <div className="bg-white rounded-[18px] shadow-[0px_10px_28px_rgba(0,0,0,0.28)] p-[16px] border border-black/5">
+          <div className="bg-[#252b3d] rounded-[18px] shadow-[0px_10px_28px_rgba(0,0,0,0.45)] p-[16px] border border-white/8">
             <table className="w-full">
               <thead>
                 <tr>
-                  <th className="text-left font-['Wix_Madefor_Display'] font-medium text-[14px] text-[#77738c] pb-[8px]">Устройство</th>
-                  <th className="text-right font-['Wix_Madefor_Display'] font-medium text-[14px] text-[#77738c] pb-[8px]">Состояние</th>
+                  <th className="text-left font-['Wix_Madefor_Display'] font-medium text-[14px] text-[#8a92a3] pb-[8px]">Устройство</th>
+                  <th className="text-right font-['Wix_Madefor_Display'] font-medium text-[14px] text-[#8a92a3] pb-[8px]">Состояние</th>
                 </tr>
               </thead>
               <tbody>
                 {data.map((row, i) => (
-                  <tr key={i} className="border-t border-[#e5e5e5]">
-                    <td className="font-['Wix_Madefor_Display'] text-[19px] text-[#16141f] py-[8px]">{row.device}</td>
-                    <td className={`text-right font-['Wix_Madefor_Display'] font-medium text-[19px] py-[8px] ${row.status === "норма" ? "text-[#22c55e]" : "text-[#ef4444]"}`}>
+                  <tr key={i} className="border-t border-white/8">
+                    <td className="font-['Wix_Madefor_Display'] text-[19px] text-white py-[8px]">{row.device}</td>
+                    <td className={`text-right font-['Wix_Madefor_Display'] font-medium text-[19px] py-[8px] ${row.status === "норма" ? "text-[#c2ff33]" : "text-[#ff4d5e]"}`}>
                       {row.status.toUpperCase()}
                     </td>
                   </tr>
@@ -98,13 +98,13 @@ function StatusTable({ data, isOpen }) {
 function StatusCard({ id, title, value, alarm, openCard, setOpenCard, IconBig, MiniIcon, tableKey }) {
   const press = usePressHold(id, openCard, setOpenCard);
   const isOpen = openCard === id;
-  const headerColor = alarm ? "#FF3B3B" : "#16141f";
+  const headerColor = alarm ? "#ff4d5e" : "#e8eaf0";
 
   return (
     <div className="relative">
       <ScMotion.div whileTap={{ scale: 0.96 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}
         onPointerDown={press.onPointerDown} onPointerUp={press.onPointerUp} onPointerLeave={press.onPointerLeave}
-        className="backdrop-blur-[10px] bg-[#f8f8f8] h-[155px] overflow-hidden relative rounded-[28px] shadow-[6px_8px_8px_0px_rgba(0,0,0,0.32)] w-[312px] cursor-pointer select-none touch-none">
+        className="bg-[#252b3d] h-[155px] overflow-hidden relative rounded-[28px] shadow-[6px_8px_8px_0px_rgba(0,0,0,0.40)] w-[312px] cursor-pointer select-none touch-none border border-white/5">
         {/* Big blob icon (right side) */}
         <IconBig alarm={alarm} />
         {/* Text block */}
@@ -118,12 +118,12 @@ function StatusCard({ id, title, value, alarm, openCard, setOpenCard, IconBig, M
             </ScMotion.div>
             <p className="font-['Wix_Madefor_Display'] font-medium text-[18px]" style={{ color: headerColor }}>{title}</p>
           </div>
-          <p className={`font-['Wix_Madefor_Display'] font-bold text-[36px] leading-[32px] pl-[5px] ${alarm ? "text-[#FF3B3B]" : "text-black"}`}>
+          <p className={`font-['Wix_Madefor_Display'] font-bold text-[36px] leading-[32px] pl-[5px] ${alarm ? "text-[#ff4d5e]" : "text-white"}`}>
             {alarm ? "АВАРИЯ" : value}
           </p>
         </div>
         {/* Inner shadow */}
-        <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_-11px_-10px_21px_0px_rgba(0,0,0,0.18)]" />
+        <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_-11px_-10px_21px_0px_rgba(0,0,0,0.32)]" />
       </ScMotion.div>
       <StatusTable data={cardTableData[tableKey]} isOpen={isOpen} />
     </div>
@@ -133,7 +133,7 @@ function StatusCard({ id, title, value, alarm, openCard, setOpenCard, IconBig, M
 function StatusCardsGrid({ alarms }) {
   const [openCard, setOpenCard] = scUseState(null);
   return (
-    <div className="content-center flex flex-wrap gap-[30px_35px] h-[392px] items-center justify-center pl-[17px] pr-[20px] py-[20px] relative rounded-[38px] w-[724px]" style={{ backgroundImage: "linear-gradient(125.098deg, rgba(181, 215, 224, 0.43) 3.248%, rgba(0, 0, 0, 0.43) 92.293%)" }}>
+    <div className="content-center flex flex-wrap gap-[30px_35px] h-[392px] items-center justify-center pl-[17px] pr-[20px] py-[20px] relative rounded-[38px] w-[724px] border border-white/5" style={{ backgroundImage: "linear-gradient(125deg, rgba(28, 35, 51, 0.6) 3%, rgba(0, 0, 0, 0.4) 92%)" }}>
       <StatusCard id="sensors" title="ДАТЧИКИ" value="НОРМА" alarm={alarms.sensors}
         openCard={openCard} setOpenCard={setOpenCard}
         IconBig={IconSensors} MiniIcon={MiniSensors} tableKey="sensors" />
@@ -150,12 +150,12 @@ function StatusCardsGrid({ alarms }) {
   );
 }
 
-/* Door + Hardware (right tile, unchanged structure) */
+/* Door + Hardware (right tile) */
 function DoorAndHardware() {
   return (
-    <div className="bg-[rgba(54,53,53,0.84)] flex flex-col gap-[24px] h-[392px] items-center justify-center px-[30px] py-[20px] rounded-[38px]">
-      <div className="backdrop-blur-[10px] h-[127px] overflow-hidden relative rounded-[28px] shadow-[6px_19px_21.3px_0px_rgba(0,0,0,0.37)] w-[308px]"
-        style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 308 127\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\"><rect width=\"100%\" height=\"100%\" fill=\"url(%23g)\"/><defs><radialGradient id=\"g\" gradientUnits=\"userSpaceOnUse\" cx=\"0\" cy=\"0\" r=\"10\" gradientTransform=\"matrix(0.4338 -9.2997 18.595 0.49511 108.45 99.961)\"><stop stop-color=\"%23555553\" offset=\"0\"/><stop stop-color=\"%2370804b\" offset=\"0.25\"/><stop stop-color=\"%238caa43\" offset=\"0.5\"/><stop stop-color=\"%23a7d53b\" offset=\"0.75\"/><stop stop-color=\"%23c2ff33\" offset=\"1\"/></radialGradient></defs></svg>')" }}>
+    <div className="bg-[#1c2333] flex flex-col gap-[24px] h-[392px] items-center justify-center px-[30px] py-[20px] rounded-[38px] border border-white/5">
+      <div className="h-[127px] overflow-hidden relative rounded-[28px] shadow-[6px_19px_21px_0px_rgba(0,0,0,0.45)] w-[308px]"
+        style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 308 127\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\"><rect width=\"100%\" height=\"100%\" fill=\"url(%23g)\"/><defs><radialGradient id=\"g\" gradientUnits=\"userSpaceOnUse\" cx=\"0\" cy=\"0\" r=\"10\" gradientTransform=\"matrix(0.4338 -9.2997 18.595 0.49511 108.45 99.961)\"><stop stop-color=\"%23252b3d\" offset=\"0\"/><stop stop-color=\"%23244a73\" offset=\"0.35\"/><stop stop-color=\"%231185e6\" offset=\"0.7\"/><stop stop-color=\"%2335a3ff\" offset=\"1\"/></radialGradient></defs></svg>')" }}>
         <div className="absolute left-[30px] top-[30px] flex flex-col gap-[8px]">
           <div className="flex gap-[8px] items-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -167,16 +167,16 @@ function DoorAndHardware() {
           <p className="font-['Wix_Madefor_Display'] font-bold text-[36px] text-white leading-[32px]">ОТКРЫТО</p>
         </div>
       </div>
-      <div className="backdrop-blur-[10px] bg-[#c2ff33] flex flex-col h-[195px] items-center px-[9px] py-[18px] rounded-[28px] w-[308px]">
-        <p className="font-['Wix_Madefor_Display'] font-medium text-[18px] text-[#363535]">HARDWARE TEMP</p>
-        <div className="mt-[20px] bg-[#555552] rounded-[21px] w-[290px] flex items-center justify-around py-[10px]">
+      <div className="bg-[#c2ff33] flex flex-col h-[195px] items-center px-[9px] py-[18px] rounded-[28px] w-[308px]">
+        <p className="font-['Wix_Madefor_Display'] font-medium text-[18px] text-[#161b27]">HARDWARE TEMP</p>
+        <div className="mt-[20px] bg-[#1c2333] rounded-[21px] w-[290px] flex items-center justify-around py-[10px]">
           <div className="text-center">
             <p className="font-['Inter'] font-bold text-[40px] text-white leading-[46px]">38°</p>
-            <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#bcbcbc]">MAIN BOARD</p>
+            <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#8a92a3]">MAIN BOARD</p>
           </div>
           <div className="text-center">
             <p className="font-['Inter'] font-bold text-[40px] text-white leading-[46px]">42°</p>
-            <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#bcbcbc]">CPU/CORE</p>
+            <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#8a92a3]">CPU/CORE</p>
           </div>
         </div>
       </div>

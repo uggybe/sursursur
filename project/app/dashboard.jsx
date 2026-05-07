@@ -28,11 +28,10 @@ function DashboardShell() {
   return (
     <div className="relative w-[1920px] h-[1080px]" style={{
       backgroundImage: `
-        linear-gradient(148deg, rgba(255,255,255,0) 62%, rgba(4,4,4,0.2) 92%),
-        linear-gradient(203deg, rgba(255,255,255,0) 41%, rgba(226,255,65,0.2) 78%),
-        radial-gradient(at 70% 5%, rgba(255,252,153,0.18), transparent 45%),
-        radial-gradient(at 30% 0%, rgba(255,215,215,0.6), transparent 55%),
-        #ffffff
+        radial-gradient(at 75% 8%, rgba(17, 133, 230, 0.12), transparent 45%),
+        radial-gradient(at 20% 0%, rgba(124, 218, 255, 0.06), transparent 55%),
+        linear-gradient(148deg, rgba(255,255,255,0) 62%, rgba(0,0,0,0.35) 92%),
+        #161b27
       `
     }}>
       <Header activeNav={activeNav} setActiveNav={setActiveNav} activeLang={activeLang} setActiveLang={setActiveLang} />

@@ -7,8 +7,8 @@ const { TOTAL_POINTS: cs_TP, VISIBLE_POINTS: cs_VP, dataToSvgPath: cs_path, getV
 function GridLines({ width, height }) {
   const cellW = 40, cellH = height / 10;
   const lines = [];
-  for (let y = cellH; y < height; y += cellH) lines.push(<path key={`h${y}`} d={`M0 ${y}H${width}`} stroke="#c8c6d2" strokeWidth="0.4" opacity="0.45" />);
-  for (let x = cellW; x < width; x += cellW) lines.push(<path key={`v${x}`} d={`M${x} 0V${height}`} stroke="#c8c6d2" strokeWidth="0.4" opacity="0.45" />);
+  for (let y = cellH; y < height; y += cellH) lines.push(<path key={`h${y}`} d={`M0 ${y}H${width}`} stroke="#3a4254" strokeWidth="0.4" opacity="0.55" />);
+  for (let x = cellW; x < width; x += cellW) lines.push(<path key={`v${x}`} d={`M${x} 0V${height}`} stroke="#3a4254" strokeWidth="0.4" opacity="0.55" />);
   return <>{lines}</>;
 }
 
@@ -68,14 +68,14 @@ function Chart({ title, series, yUnit, timeLabels, timestamps, period, height = 
   }, [series, timestamps, period, yUnit]);
 
   return (
-    <div className="bg-white/95 backdrop-blur-[10px] rounded-[24px] shadow-[0_6px_24px_rgba(0,0,0,0.18)] w-full overflow-hidden flex flex-col">
+    <div className="bg-[#252b3d] rounded-[24px] shadow-[0_6px_24px_rgba(0,0,0,0.30)] w-full overflow-hidden flex flex-col border border-white/5">
       <div className="flex items-center justify-between px-[28px] pt-[6px] pb-[2px]">
-        <p className="font-['Wix_Madefor_Display'] font-medium text-[16px] text-black">{title}</p>
+        <p className="font-['Wix_Madefor_Display'] font-medium text-[16px] text-white">{title}</p>
         <div className="flex gap-[16px]">
           {series.map((s, i) => (
             <div key={i} className="flex items-center gap-[6px]">
               <div className="size-[8px] rounded-full" style={{ background: s.stroke }} />
-              <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#77738c]">{s.label}</p>
+              <p className="font-['Wix_Madefor_Display'] text-[12px] text-[#8a92a3]">{s.label}</p>
             </div>
           ))}
         </div>
@@ -85,13 +85,13 @@ function Chart({ title, series, yUnit, timeLabels, timestamps, period, height = 
         <div className="absolute left-0 top-0" style={{ width: 52, bottom: 26 }}>
           {yAxis.labels.map((l, idx) => (
             <div key={`${l.value}-${idx}`} className="absolute right-[6px] flex items-center gap-[3px]" style={{ top: `${l.pct}%`, transform: "translateY(-50%)" }}>
-              <p className="font-['Wix_Madefor_Display'] font-medium text-[#77738c] text-[11px] tabular-nums">{l.value}</p>
-              <svg width="5" height="1"><path d="M0 0.5H5" stroke="#77738C" /></svg>
+              <p className="font-['Wix_Madefor_Display'] font-medium text-[#8a92a3] text-[11px] tabular-nums">{l.value}</p>
+              <svg width="5" height="1"><path d="M0 0.5H5" stroke="#8a92a3" /></svg>
             </div>
           ))}
         </div>
         {/* axis line */}
-        <div className="absolute left-[54px] top-0 w-px bg-[#77738c]/60" style={{ bottom: 26 }} />
+        <div className="absolute left-[54px] top-0 w-px bg-[#8a92a3]/40" style={{ bottom: 26 }} />
         {/* drawing area */}
         <div className="absolute top-0 left-[56px] right-[18px] cursor-crosshair" style={{ bottom: 26 }} ref={ref} onMouseMove={onMove} onMouseLeave={() => setTooltip(null)}>
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox={`0 0 ${W} ${H}`}>
@@ -101,12 +101,12 @@ function Chart({ title, series, yUnit, timeLabels, timestamps, period, height = 
           <Tooltip data={tooltip} chartHeight={height - 26} />
         </div>
         {/* x axis */}
-        <div className="absolute left-[56px] right-[18px] h-px bg-[#77738c]/60" style={{ bottom: 26 }} />
+        <div className="absolute left-[56px] right-[18px] h-px bg-[#8a92a3]/40" style={{ bottom: 26 }} />
         <div className="absolute left-[56px] right-[18px] flex justify-between" style={{ bottom: 4 }}>
           {timeLabels.map((l, i) => (
             <div key={`${l}-${i}`} className="flex flex-col items-center">
-              <svg width="1" height="3"><path d="M0.5 0V3" stroke="#77738C" /></svg>
-              <p className="font-['Inter'] text-[#77738c] text-[11px] mt-[2px]">{l}</p>
+              <svg width="1" height="3"><path d="M0.5 0V3" stroke="#8a92a3" /></svg>
+              <p className="font-['Inter'] text-[#8a92a3] text-[11px] mt-[2px]">{l}</p>
             </div>
           ))}
         </div>
@@ -129,16 +129,15 @@ function PeriodBar({ active, setActive }) {
   return (
     <div className="flex w-full items-center justify-between px-[12px]">
       <csMotion.button whileTap={{ scale: 0.94 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        className="bg-[#363535] flex gap-[8px] h-[34px] items-center justify-center px-[14px] rounded-[17px] cursor-pointer">
+        className="bg-[#1185e6] flex gap-[8px] h-[34px] items-center justify-center px-[14px] rounded-[17px] cursor-pointer hover:bg-[#0d6fc0] transition-colors">
         <ExportIcon />
         <span className="font-['Wix_Madefor_Display'] text-[13px] text-white">Export</span>
       </csMotion.button>
-      <div className="flex gap-[8px] items-center">
+      <div className="flex gap-[6px] items-center bg-[#1c2333] rounded-[17px] p-[3px]">
         {periods.map((p) => (
           <button key={p} onClick={() => setActive(p)}
-            className={`backdrop-blur-[5px] flex h-[34px] items-center justify-center px-[16px] rounded-[17px] cursor-pointer transition-colors duration-200 ${active === p ? "bg-[#353434] text-white" : "text-[#16141f]"}`}
-            style={active !== p ? { backgroundImage: "linear-gradient(131.107deg, rgba(240, 244, 246, 0.2) 135.28%, rgb(54, 53, 53) 173.76%)" } : undefined}>
-            <span className="font-['DM_Sans'] text-[13px]">{p}</span>
+            className={`flex h-[28px] items-center justify-center px-[14px] rounded-[14px] cursor-pointer transition-colors duration-200 ${active === p ? "bg-[#1185e6] text-white" : "text-[#8a92a3] hover:text-white"}`}>
+            <span className="font-['DM_Sans'] text-[12px] font-medium">{p}</span>
           </button>
         ))}
       </div>
@@ -200,27 +199,27 @@ function BrushSelector({ offset, windowSize, max, onChange, miniData, timestamps
     <div className="w-full px-[12px]">
       <div className="flex items-center gap-[12px]">
         <p className="font-['Inter'] text-[11px] text-white/60 w-[110px] text-right tabular-nums">{fmt(startTs)}</p>
-        <div ref={ref} className="flex-1 relative h-[44px] rounded-[10px] overflow-hidden bg-white/85 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06),0_1px_4px_rgba(0,0,0,0.12)]"
+        <div ref={ref} className="flex-1 relative h-[44px] rounded-[10px] overflow-hidden bg-[#1c2333] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),0_1px_4px_rgba(0,0,0,0.30)]"
           onClick={onTrackClick}>
           {/* Mini chart */}
           <svg className="absolute inset-0 block size-full" fill="none" preserveAspectRatio="none" viewBox={`0 0 ${miniW} ${miniH}`}>
-            {miniPaths.map((d, i) => <path key={i} d={d} stroke={miniData[i].stroke} strokeWidth="1.3" fill="none" opacity="0.55" />)}
+            {miniPaths.map((d, i) => <path key={i} d={d} stroke={miniData[i].stroke} strokeWidth="1.3" fill="none" opacity="0.6" />)}
           </svg>
           {/* Dimmed outside */}
-          <div className="absolute top-0 bottom-0 left-0 bg-[#16141f]/22 pointer-events-none" style={{ width: `${left}%` }} />
-          <div className="absolute top-0 bottom-0 right-0 bg-[#16141f]/22 pointer-events-none" style={{ width: `${Math.max(0, 100 - left - width)}%` }} />
+          <div className="absolute top-0 bottom-0 left-0 bg-black/40 pointer-events-none" style={{ width: `${left}%` }} />
+          <div className="absolute top-0 bottom-0 right-0 bg-black/40 pointer-events-none" style={{ width: `${Math.max(0, 100 - left - width)}%` }} />
           {/* Window */}
           <div
             onPointerDown={(e) => startDrag(e, "move")}
             className="absolute top-0 bottom-0 cursor-grab active:cursor-grabbing"
-            style={{ left: `${left}%`, width: `${width}%`, boxShadow: "inset 0 0 0 1.5px #DAFF33", background: "rgba(218,255,51,0.10)" }}
+            style={{ left: `${left}%`, width: `${width}%`, boxShadow: "inset 0 0 0 1.5px #1185e6", background: "rgba(17,133,230,0.12)" }}
           >
             {/* Handles */}
             <div className="absolute top-0 bottom-0 left-0 w-[8px] flex items-center justify-center">
-              <div className="w-[3px] h-[18px] bg-[#DAFF33] rounded-full" />
+              <div className="w-[3px] h-[18px] bg-[#1185e6] rounded-full" />
             </div>
             <div className="absolute top-0 bottom-0 right-0 w-[8px] flex items-center justify-center">
-              <div className="w-[3px] h-[18px] bg-[#DAFF33] rounded-full" />
+              <div className="w-[3px] h-[18px] bg-[#1185e6] rounded-full" />
             </div>
           </div>
         </div>
@@ -246,8 +245,8 @@ function ChartsSection() {
   const tLabels = cs_lbls(ts, period);
 
   return (
-    <div className="flex flex-col gap-[8px] items-stretch w-full h-full pt-[10px] pb-[8px] px-[16px] rounded-[36px]"
-      style={{ backgroundImage: "linear-gradient(-75.6336deg, rgba(0, 0, 0, 0.31) 4.5812%, rgba(84, 146, 169, 0.23) 97.952%)" }}>
+    <div className="flex flex-col gap-[8px] items-stretch w-full h-full pt-[10px] pb-[8px] px-[16px] rounded-[36px] border border-white/5"
+      style={{ backgroundImage: "linear-gradient(-75deg, rgba(28, 35, 51, 0.6) 5%, rgba(17, 133, 230, 0.10) 98%)" }}>
       <PeriodBar active={period} setActive={setPeriod} />
       <div className="flex flex-col gap-[6px]">
         <Chart title="Температура" yUnit="°C" period={period} timestamps={ts} timeLabels={tLabels} height={118}

@@ -17,12 +17,12 @@ function fmtUptime(ms) {
 function Stat({ label, val, max, unit, color }) {
   const pct = Math.min(100, (val / max) * 100);
   return (
-    <div className="bg-white/95 rounded-[24px] p-[20px] shadow-[0_4px_18px_rgba(0,0,0,0.08)]">
+    <div className="bg-[#1c2333] rounded-[24px] p-[20px] shadow-[0_4px_18px_rgba(0,0,0,0.20)] border border-white/5">
       <div className="flex items-center justify-between mb-[10px]">
-        <span className="font-['Wix_Madefor_Display'] text-[12px] uppercase tracking-wide text-[#77738c]">{label}</span>
-        <span className="font-['Wix_Madefor_Display'] font-bold text-[22px] text-black tabular-nums">{val.toFixed(label === "Disk" ? 1 : 0)}{unit}</span>
+        <span className="font-['Wix_Madefor_Display'] text-[12px] uppercase tracking-wide text-[#8a92a3]">{label}</span>
+        <span className="font-['Wix_Madefor_Display'] font-bold text-[22px] text-white tabular-nums">{val.toFixed(label === "Disk" ? 1 : 0)}{unit}</span>
       </div>
-      <div className="h-[8px] bg-[#16141f]/8 rounded-full overflow-hidden">
+      <div className="h-[8px] bg-white/8 rounded-full overflow-hidden">
         <SyMotion.div className="h-full rounded-full" style={{ background: color }}
           animate={{ width: `${pct}%` }} transition={{ type: "spring", stiffness: 100, damping: 22 }} />
       </div>
@@ -74,40 +74,40 @@ function SystemPage({ events }) {
   return (
     <div className="flex flex-col gap-[20px] w-full">
       <div>
-        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-black">Система</p>
-        <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#16141f]/60">Информация о контроллере и расширенный журнал событий</p>
+        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#1185e6]">Система</p>
+        <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#8a92a3]">Информация о контроллере и расширенный журнал событий</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-[20px]">
         {/* Info card */}
-        <div className="bg-[#363535] text-white rounded-[28px] p-[20px] md:p-[28px]">
+        <div className="bg-[#252b3d] text-white rounded-[28px] p-[20px] md:p-[28px] border border-white/5">
           <div className="flex items-center justify-between mb-[20px]">
             <p className="font-['Wix_Madefor_Display'] font-bold text-[18px]">Surdis Controller</p>
-            <span className="font-mono text-[12px] text-[#A8E000] flex items-center gap-[6px]"><span className="size-[8px] rounded-full bg-[#A8E000] animate-pulse" />ONLINE</span>
+            <span className="font-mono text-[12px] text-[#c2ff33] flex items-center gap-[6px]"><span className="size-[8px] rounded-full bg-[#c2ff33] animate-pulse" />ONLINE</span>
           </div>
           <div className="grid grid-cols-2 gap-y-[14px] gap-x-[40px]">
             <div>
-              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-white/50 tracking-wide">Время работы</p>
-              <p className="font-mono text-[24px] tabular-nums mt-[2px]">{fmtUptime(now - START_TS)}</p>
+              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-[#8a92a3] tracking-wide">Время работы</p>
+              <p className="font-mono text-[24px] tabular-nums mt-[2px] text-white">{fmtUptime(now - START_TS)}</p>
             </div>
             <div>
-              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-white/50 tracking-wide">Версия ПО</p>
-              <p className="font-mono text-[18px] mt-[2px]">v2.4.7-stable</p>
+              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-[#8a92a3] tracking-wide">Версия ПО</p>
+              <p className="font-mono text-[18px] mt-[2px] text-white">v2.4.7-stable</p>
             </div>
             <div>
-              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-white/50 tracking-wide">Модель</p>
-              <p className="font-mono text-[18px] mt-[2px]">SRD-CTRL-200</p>
+              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-[#8a92a3] tracking-wide">Модель</p>
+              <p className="font-mono text-[18px] mt-[2px] text-white">SRD-CTRL-200</p>
             </div>
             <div>
-              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-white/50 tracking-wide">Серийный №</p>
-              <p className="font-mono text-[18px] mt-[2px]">SRD-2024-A019</p>
+              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-[#8a92a3] tracking-wide">Серийный №</p>
+              <p className="font-mono text-[18px] mt-[2px] text-white">SRD-2024-A019</p>
             </div>
             <div>
-              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-white/50 tracking-wide">Прошивка от</p>
-              <p className="font-mono text-[18px] mt-[2px]">12.03.2025</p>
+              <p className="font-['Wix_Madefor_Display'] text-[11px] uppercase text-[#8a92a3] tracking-wide">Прошивка от</p>
+              <p className="font-mono text-[18px] mt-[2px] text-white">12.03.2025</p>
             </div>
             <div className="flex items-end">
-              <button className="bg-[#DAFF33] text-black font-['Wix_Madefor_Display'] font-bold text-[13px] px-[16px] py-[8px] rounded-[12px] hover:bg-[#c2ff33] transition-colors">
+              <button className="bg-[#1185e6] text-white font-['Wix_Madefor_Display'] font-bold text-[13px] px-[16px] py-[8px] rounded-[12px] hover:bg-[#0d6fc0] transition-colors">
                 Проверить обновления
               </button>
             </div>
@@ -116,33 +116,33 @@ function SystemPage({ events }) {
 
         {/* Usage stack */}
         <div className="flex flex-col gap-[12px]">
-          <Stat label="CPU"  val={usage.cpu}  max={100} unit="%"  color="#DAFF33" />
-          <Stat label="RAM"  val={usage.ram}  max={100} unit="%"  color="#A8E000" />
-          <Stat label="Disk" val={usage.disk} max={100} unit="%"  color="#368CE2" />
+          <Stat label="CPU"  val={usage.cpu}  max={100} unit="%"  color="#1185e6" />
+          <Stat label="RAM"  val={usage.ram}  max={100} unit="%"  color="#c2ff33" />
+          <Stat label="Disk" val={usage.disk} max={100} unit="%"  color="#ffaa33" />
         </div>
       </div>
 
       {/* Extended log */}
-      <div className="bg-white/95 backdrop-blur-[10px] rounded-[28px] p-[20px] shadow-[0_8px_28px_rgba(0,0,0,0.10)] flex flex-col gap-[14px]">
+      <div className="bg-[#1c2333] rounded-[28px] p-[20px] shadow-[0_8px_28px_rgba(0,0,0,0.30)] border border-white/5 flex flex-col gap-[14px]">
         <div className="flex flex-wrap items-center gap-[12px] justify-between">
-          <p className="font-['Wix_Madefor_Display'] font-bold text-[18px] text-black">Журнал событий ({filtered.length})</p>
+          <p className="font-['Wix_Madefor_Display'] font-bold text-[18px] text-white">Журнал событий ({filtered.length})</p>
           <div className="flex flex-wrap gap-[8px] items-center">
             <input value={logQuery} onChange={e => setLogQuery(e.target.value)} placeholder="Поиск…"
-              className="bg-[#f5f5f7] rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] w-[220px] focus:outline-none focus:ring-2 focus:ring-[#DAFF33]" />
-            <div className="flex gap-[4px] bg-[#f5f5f7] rounded-[12px] p-[3px]">
+              className="bg-[#252b3d] border border-white/8 rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] text-white w-[220px] focus:outline-none focus:ring-2 focus:ring-[#1185e6] placeholder:text-[#5d6679]" />
+            <div className="flex gap-[4px] bg-[#252b3d] border border-white/8 rounded-[12px] p-[3px]">
               {["ALL", "INFO", "WARN", "ERROR"].map(l => (
                 <button key={l} onClick={() => setLogFilter(l)}
-                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#363535] text-white" : "text-[#16141f]"}`}>{l}</button>
+                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#1185e6] text-white" : "text-[#8a92a3] hover:text-white"}`}>{l}</button>
               ))}
             </div>
-            <button onClick={() => exportLog("csv")}  className="bg-[#363535] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">CSV</button>
-            <button onClick={() => exportLog("json")} className="bg-[#363535] text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#1f1f1f]">JSON</button>
+            <button onClick={() => exportLog("csv")}  className="bg-[#252b3d] border border-white/8 text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#2e3548]">CSV</button>
+            <button onClick={() => exportLog("json")} className="bg-[#252b3d] border border-white/8 text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#2e3548]">JSON</button>
           </div>
         </div>
-        <div className="bg-[#363535] rounded-[18px] overflow-hidden border border-white/5 h-[420px]">
+        <div className="bg-[#161b27] rounded-[18px] overflow-hidden border border-white/8 h-[420px]">
           <div className="size-full overflow-auto px-[18px] py-[14px] surdis-thinscroll">
             {filtered.length === 0 ? (
-              <p className="font-mono text-[13px] text-[#6b6b6b]">— нет событий —</p>
+              <p className="font-mono text-[13px] text-[#5d6679]">— нет событий —</p>
             ) : filtered.map(ev => <SyEventRow key={ev.id} ev={ev} />)}
           </div>
         </div>
