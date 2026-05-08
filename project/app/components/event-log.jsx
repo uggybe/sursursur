@@ -40,16 +40,16 @@ function useEventStore(maxLen = 200) {
   return events;
 }
 
-const LEVEL_COLOR = { INFO: "#1185e6", WARN: "#ffaa33", ERROR: "#ff4d5e" };
+const LEVEL_COLOR = { INFO: "#e8e8ea", WARN: "#ffd52a", ERROR: "#cd212a" };
 
 function EventRow({ ev, large }) {
   const c = LEVEL_COLOR[ev.level];
   return (
     <div className="flex gap-[10px] items-baseline font-mono leading-[1.55]" style={{ fontSize: large ? 14 : 13 }}>
-      <span className="text-[#5d6679] tabular-nums">[{ev.time}]</span>
+      <span className="text-[#7b7b7b] tabular-nums">[{ev.time}]</span>
       <span className="font-bold tabular-nums" style={{ color: c, minWidth: 56, display: "inline-block" }}>{ev.level}</span>
-      <span className="text-[#8a92a3]" style={{ minWidth: 90 }}>{ev.source}</span>
-      <span className="text-[#e8eaf0]">{ev.msg}</span>
+      <span className="text-[#a09f9d]" style={{ minWidth: 90 }}>{ev.source}</span>
+      <span className="text-[#e8e8ea]">{ev.msg}</span>
     </div>
   );
 }
@@ -57,11 +57,11 @@ function EventRow({ ev, large }) {
 function EventLog({ events }) {
   return (
     <div className="flex flex-col gap-[14px] h-[392px] items-stretch pb-[20px] pt-[14px] px-[20px] rounded-[28px] shadow-[0px_8px_32px_0px_rgba(0,0,0,0.30)] w-[712px] border border-white/5"
-      style={{ backgroundImage: "linear-gradient(-70deg, rgba(17, 133, 230, 0.10) 8%, rgba(28, 35, 51, 0.7) 74%)" }}>
+      style={{ backgroundImage: "linear-gradient(-70deg, rgba(255, 213, 42, 0.08) 8%, rgba(42, 45, 64, 0.75) 74%)" }}>
       <div className="flex items-center justify-between">
-        <div className="bg-[#252b3d] flex gap-[8px] items-center px-[14px] py-[8px] rounded-[18px] border border-white/5">
+        <div className="bg-[#363842] flex gap-[8px] items-center px-[14px] py-[8px] rounded-[18px] border border-white/5">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M3 4h12M3 9h12M3 14h7" stroke="#1185e6" strokeWidth="1.6" strokeLinecap="round"/>
+            <path d="M3 4h12M3 9h12M3 14h7" stroke="#ffd52a" strokeWidth="1.6" strokeLinecap="round"/>
           </svg>
           <p className="font-['Wix_Madefor_Display'] font-bold text-[16px] text-white tracking-wide">ЖУРНАЛ СОБЫТИЙ</p>
         </div>
@@ -71,7 +71,7 @@ function EventLog({ events }) {
           <span className="flex items-center gap-[5px]"><span className="size-[8px] rounded-full" style={{ background: LEVEL_COLOR.ERROR }}/><span className="text-white/70">ERROR</span></span>
         </div>
       </div>
-      <div className="flex-1 bg-[#161b27] rounded-[18px] overflow-hidden border border-white/8 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+      <div className="flex-1 bg-[#222328] rounded-[18px] overflow-hidden border border-white/8 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
         <div className="size-full overflow-auto px-[18px] py-[14px] surdis-thinscroll">
           <ElAnim initial={false}>
             {events.map(ev => (

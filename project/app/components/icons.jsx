@@ -16,7 +16,7 @@ function AlarmWrap({ alarm, color, alarmColor, children, filterId }) {
 /* ----- Sensors: sine-wave blob ----- */
 function IconSensors({ alarm = false }) {
   const color = "#A8E000";       // calm chartreuse — matches Surdis lime family
-  const alarmColor = "#FF3B3B";
+  const alarmColor = "#cd212a";
   return (
     <div className="absolute inset-0 pointer-events-none">
       <svg viewBox="0 0 220 200" className="absolute" style={{ left: 130, top: -10, width: 230, height: 220, filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.18))" }}>
@@ -50,7 +50,7 @@ function IconSensors({ alarm = false }) {
 /* ----- Power: plug + socket blob ----- */
 function IconPower({ alarm = false }) {
   const color = "#C2FF33";
-  const alarmColor = "#FF3B3B";
+  const alarmColor = "#cd212a";
   return (
     <div className="absolute inset-0 pointer-events-none">
       <svg viewBox="0 0 220 200" className="absolute" style={{ left: 150, top: -5, width: 220, height: 210, filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.18))" }}>
@@ -85,7 +85,7 @@ function IconPower({ alarm = false }) {
 /* ----- Climate: bold cloud-fan hybrid blob (we keep the climate as alarm-style red, default normal-green) ----- */
 function IconClimate({ alarm = false }) {
   const color = "#A8E000";
-  const alarmColor = "#FF3B3B";
+  const alarmColor = "#cd212a";
   return (
     <div className="absolute inset-0 pointer-events-none">
       <svg viewBox="0 0 220 200" className="absolute" style={{ left: 155, top: 0, width: 215, height: 200, filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.18))" }}>
@@ -118,7 +118,7 @@ function IconClimate({ alarm = false }) {
 /* ----- Modbus: chain links blob ----- */
 function IconModbus({ alarm = false }) {
   const color = "#C2FF33";
-  const alarmColor = "#FF3B3B";
+  const alarmColor = "#cd212a";
   return (
     <div className="absolute inset-0 pointer-events-none">
       <svg viewBox="0 0 220 200" className="absolute" style={{ left: 145, top: -5, width: 230, height: 210, filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.18))" }}>
