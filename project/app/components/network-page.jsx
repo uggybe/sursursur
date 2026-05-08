@@ -8,7 +8,7 @@ function Field({ label, value, onChange, suffix, disabled, mono }) {
       <span className="font-['Wix_Madefor_Display'] text-[12px] uppercase tracking-wide text-[#a09f9d]">{label}</span>
       <div className={`relative bg-[#2a2d40] border border-white/8 rounded-[14px] ${disabled ? "opacity-60" : ""}`}>
         <input value={value} onChange={e => onChange(e.target.value)} disabled={disabled}
-          className={`w-full bg-transparent rounded-[14px] px-[16px] py-[12px] ${mono ? "font-mono" : "font-['Wix_Madefor_Display']"} text-[15px] text-white focus:outline-none focus:ring-2 focus:ring-[#ffd52a]`} />
+          className={`w-full bg-transparent rounded-[14px] px-[16px] py-[12px] ${mono ? "font-mono" : "font-['Wix_Madefor_Display']"} text-[15px] text-white focus:outline-none focus:ring-2 focus:ring-[#e8e8ea]`} />
         {suffix && <span className="absolute right-[16px] top-1/2 -translate-y-1/2 font-['Wix_Madefor_Display'] text-[12px] text-[#a09f9d]">{suffix}</span>}
       </div>
     </label>
@@ -20,7 +20,7 @@ function Toggle({ on, onChange, label }) {
     <button type="button" onClick={() => onChange(!on)}
       className="flex items-center justify-between w-full bg-[#2a2d40] border border-white/8 rounded-[14px] px-[16px] py-[12px]">
       <span className="font-['Wix_Madefor_Display'] font-medium text-[15px] text-white">{label}</span>
-      <span className={`relative w-[44px] h-[24px] rounded-full transition-colors ${on ? "bg-[#ffd52a]" : "bg-white/10"}`}>
+      <span className={`relative w-[44px] h-[24px] rounded-full transition-colors ${on ? "bg-[#e8e8ea]" : "bg-white/10"}`}>
         <NwMotion.span layout transition={{ type: "spring", stiffness: 600, damping: 30 }}
           className={`absolute top-[2px] size-[20px] rounded-full ${on ? "bg-white left-[22px]" : "bg-[#a09f9d] left-[2px]"}`} />
       </span>
@@ -43,7 +43,7 @@ function NetworkPage() {
   return (
     <div className="flex flex-col gap-[20px] w-full">
       <div>
-        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#ffd52a]">Сеть</p>
+        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#e8e8ea]">Сеть</p>
         <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#a09f9d]">Сетевые настройки контроллера и Modbus TCP</p>
       </div>
 
@@ -88,7 +88,7 @@ function NetworkPage() {
       <div className="flex items-center gap-[16px] justify-end">
         {savedAt && <span className="font-['Wix_Madefor_Display'] text-[13px] text-[#a09f9d]">Сохранено в {savedAt}</span>}
         <button onClick={save}
-          className="bg-[#ffd52a] hover:bg-[#e6bf25] transition-colors font-['Wix_Madefor_Display'] font-bold text-[15px] text-white px-[28px] py-[14px] rounded-[18px] shadow-[0_6px_18px_rgba(255,213,42,0.35)]">
+          className="bg-[#e8e8ea] hover:bg-[#cfcfd1] transition-colors font-['Wix_Madefor_Display'] font-bold text-[15px] text-white px-[28px] py-[14px] rounded-[18px] shadow-[0_6px_18px_rgba(232,232,234,0.35)]">
           Применить
         </button>
       </div>

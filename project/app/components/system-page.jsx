@@ -74,7 +74,7 @@ function SystemPage({ events }) {
   return (
     <div className="flex flex-col gap-[20px] w-full">
       <div>
-        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#ffd52a]">Система</p>
+        <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#e8e8ea]">Система</p>
         <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#a09f9d]">Информация о контроллере и расширенный журнал событий</p>
       </div>
 
@@ -107,7 +107,7 @@ function SystemPage({ events }) {
               <p className="font-mono text-[18px] mt-[2px] text-white">12.03.2025</p>
             </div>
             <div className="flex items-end">
-              <button className="bg-[#ffd52a] text-[#2c2d31] font-['Wix_Madefor_Display'] font-bold text-[13px] px-[16px] py-[8px] rounded-[12px] hover:bg-[#e6bf25] transition-colors">
+              <button className="bg-[#e8e8ea] text-[#2c2d31] font-['Wix_Madefor_Display'] font-bold text-[13px] px-[16px] py-[8px] rounded-[12px] hover:bg-[#cfcfd1] transition-colors">
                 Проверить обновления
               </button>
             </div>
@@ -116,9 +116,9 @@ function SystemPage({ events }) {
 
         {/* Usage stack */}
         <div className="flex flex-col gap-[12px]">
-          <Stat label="CPU"  val={usage.cpu}  max={100} unit="%"  color="#ffd52a" />
+          <Stat label="CPU"  val={usage.cpu}  max={100} unit="%"  color="#e8e8ea" />
           <Stat label="RAM"  val={usage.ram}  max={100} unit="%"  color="#c2ff33" />
-          <Stat label="Disk" val={usage.disk} max={100} unit="%"  color="#ffd52a" />
+          <Stat label="Disk" val={usage.disk} max={100} unit="%"  color="#e8e8ea" />
         </div>
       </div>
 
@@ -128,11 +128,11 @@ function SystemPage({ events }) {
           <p className="font-['Wix_Madefor_Display'] font-bold text-[18px] text-white">Журнал событий ({filtered.length})</p>
           <div className="flex flex-wrap gap-[8px] items-center">
             <input value={logQuery} onChange={e => setLogQuery(e.target.value)} placeholder="Поиск…"
-              className="bg-[#363842] border border-white/8 rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] text-white w-[220px] focus:outline-none focus:ring-2 focus:ring-[#ffd52a] placeholder:text-[#7b7b7b]" />
+              className="bg-[#363842] border border-white/8 rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] text-white w-[220px] focus:outline-none focus:ring-2 focus:ring-[#e8e8ea] placeholder:text-[#7b7b7b]" />
             <div className="flex gap-[4px] bg-[#363842] border border-white/8 rounded-[12px] p-[3px]">
               {["ALL", "INFO", "WARN", "ERROR"].map(l => (
                 <button key={l} onClick={() => setLogFilter(l)}
-                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#ffd52a] text-[#2c2d31]" : "text-[#a09f9d] hover:text-white"}`}>{l}</button>
+                  className={`px-[12px] py-[6px] rounded-[10px] font-mono text-[12px] transition-colors ${logFilter === l ? "bg-[#e8e8ea] text-[#2c2d31]" : "text-[#a09f9d] hover:text-white"}`}>{l}</button>
               ))}
             </div>
             <button onClick={() => exportLog("csv")}  className="bg-[#363842] border border-white/8 text-white rounded-[12px] px-[14px] py-[8px] font-['Wix_Madefor_Display'] text-[13px] font-medium hover:bg-[#3d3f4a]">CSV</button>

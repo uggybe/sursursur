@@ -40,7 +40,7 @@ function useEventStore(maxLen = 200) {
   return events;
 }
 
-const LEVEL_COLOR = { INFO: "#e8e8ea", WARN: "#ffd52a", ERROR: "#cd212a" };
+const LEVEL_COLOR = { INFO: "#e8e8ea", WARN: "#e8e8ea", ERROR: "#cd212a" };
 
 function EventRow({ ev, large }) {
   const c = LEVEL_COLOR[ev.level];
@@ -57,11 +57,11 @@ function EventRow({ ev, large }) {
 function EventLog({ events }) {
   return (
     <div className="flex flex-col gap-[14px] h-[392px] items-stretch pb-[20px] pt-[14px] px-[20px] rounded-[28px] shadow-[0px_8px_32px_0px_rgba(0,0,0,0.30)] w-[712px] border border-white/5"
-      style={{ backgroundImage: "linear-gradient(-70deg, rgba(255, 213, 42, 0.08) 8%, rgba(42, 45, 64, 0.75) 74%)" }}>
+      style={{ backgroundImage: "linear-gradient(-70deg, rgba(255, 255, 255, 0.04) 8%, rgba(42, 45, 64, 0.78) 74%)" }}>
       <div className="flex items-center justify-between">
         <div className="bg-[#363842] flex gap-[8px] items-center px-[14px] py-[8px] rounded-[18px] border border-white/5">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M3 4h12M3 9h12M3 14h7" stroke="#ffd52a" strokeWidth="1.6" strokeLinecap="round"/>
+            <path d="M3 4h12M3 9h12M3 14h7" stroke="#e8e8ea" strokeWidth="1.6" strokeLinecap="round"/>
           </svg>
           <p className="font-['Wix_Madefor_Display'] font-bold text-[16px] text-white tracking-wide">ЖУРНАЛ СОБЫТИЙ</p>
         </div>

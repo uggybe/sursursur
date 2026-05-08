@@ -155,7 +155,7 @@ function DoorAndHardware() {
   return (
     <div className="bg-[#2a2d40] flex flex-col gap-[24px] h-[392px] items-center justify-center px-[30px] py-[20px] rounded-[38px] border border-white/5">
       <div className="h-[127px] overflow-hidden relative rounded-[28px] shadow-[6px_19px_21px_0px_rgba(0,0,0,0.45)] w-[308px]"
-        style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 308 127\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\"><rect width=\"100%\" height=\"100%\" fill=\"url(%23g)\"/><defs><radialGradient id=\"g\" gradientUnits=\"userSpaceOnUse\" cx=\"0\" cy=\"0\" r=\"10\" gradientTransform=\"matrix(0.4338 -9.2997 18.595 0.49511 108.45 99.961)\"><stop stop-color=\"%23363842\" offset=\"0\"/><stop stop-color=\"%23806a1e\" offset=\"0.4\"/><stop stop-color=\"%23e6bf25\" offset=\"0.75\"/><stop stop-color=\"%23ffd52a\" offset=\"1\"/></radialGradient></defs></svg>')" }}>
+        style={{ backgroundImage: "url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 308 127\" xmlns=\"http://www.w3.org/2000/svg\" preserveAspectRatio=\"none\"><rect width=\"100%\" height=\"100%\" fill=\"url(%23g)\"/><defs><radialGradient id=\"g\" gradientUnits=\"userSpaceOnUse\" cx=\"0\" cy=\"0\" r=\"10\" gradientTransform=\"matrix(0.4338 -9.2997 18.595 0.49511 108.45 99.961)\"><stop stop-color=\"%232c2d31\" offset=\"0\"/><stop stop-color=\"%235a5a5e\" offset=\"0.4\"/><stop stop-color=\"%23a09f9d\" offset=\"0.75\"/><stop stop-color=\"%23e8e8ea\" offset=\"1\"/></radialGradient></defs></svg>')" }}>
         <div className="absolute left-[30px] top-[30px] flex flex-col gap-[8px]">
           <div className="flex gap-[8px] items-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -167,7 +167,7 @@ function DoorAndHardware() {
           <p className="font-['Wix_Madefor_Display'] font-bold text-[36px] text-[#2c2d31] leading-[32px]">ОТКРЫТО</p>
         </div>
       </div>
-      <div className="bg-[#ffd52a] flex flex-col h-[195px] items-center px-[9px] py-[18px] rounded-[28px] w-[308px]">
+      <div className="bg-[#e8e8ea] flex flex-col h-[195px] items-center px-[9px] py-[18px] rounded-[28px] w-[308px]">
         <p className="font-['Wix_Madefor_Display'] font-medium text-[18px] text-[#2c2d31]">HARDWARE TEMP</p>
         <div className="mt-[20px] bg-[#2c2d31] rounded-[21px] w-[290px] flex items-center justify-around py-[10px]">
           <div className="text-center">

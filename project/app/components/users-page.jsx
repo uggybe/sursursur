@@ -12,7 +12,7 @@ const initialUsers = [
 const ROLES = ["Service", "Admin", "Operator"];
 const ROLE_COLOR = {
   Service:  "#cd212a",
-  Admin:    "#ffd52a",
+  Admin:    "#e8e8ea",
   Operator: "#c2ff33",
 };
 
@@ -33,12 +33,12 @@ function UsersPage() {
     <div className="flex flex-col gap-[20px] w-full">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-[14px]">
         <div>
-          <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#ffd52a]">Пользователи</p>
+          <p className="font-['Wix_Madefor_Display'] font-bold text-[24px] md:text-[28px] text-[#e8e8ea]">Пользователи</p>
           <p className="font-['Wix_Madefor_Display'] text-[14px] md:text-[15px] text-[#a09f9d]">Управление учётными записями системы</p>
         </div>
         <UsMotion.button whileTap={{ scale: 0.96 }}
           onClick={() => setOpen(true)}
-          className="bg-[#ffd52a] hover:bg-[#e6bf25] transition-colors text-[#2c2d31] font-['Wix_Madefor_Display'] font-medium text-[14px] md:text-[15px] px-[18px] md:px-[20px] py-[10px] md:py-[12px] rounded-[16px] md:rounded-[18px] flex items-center gap-[10px] shadow-[0_6px_20px_rgba(255,213,42,0.25)] w-fit">
+          className="bg-[#e8e8ea] hover:bg-[#cfcfd1] transition-colors text-[#2c2d31] font-['Wix_Madefor_Display'] font-medium text-[14px] md:text-[15px] px-[18px] md:px-[20px] py-[10px] md:py-[12px] rounded-[16px] md:rounded-[18px] flex items-center gap-[10px] shadow-[0_6px_20px_rgba(232,232,234,0.25)] w-fit">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#2c2d31" strokeWidth="2" strokeLinecap="round" /></svg>
           Добавить пользователя
         </UsMotion.button>
@@ -56,7 +56,7 @@ function UsersPage() {
           {users.map(u => (
             <div key={u.id} className="grid grid-cols-[1fr_auto] md:grid-cols-[2fr_3fr_1.4fr_1.4fr_60px] gap-y-[6px] gap-x-[12px] items-center px-[16px] md:px-[28px] py-[14px] md:py-[16px] border-b border-white/5 hover:bg-white/[0.03] transition-colors">
               <div className="flex items-center gap-[12px]">
-                <div className="size-[34px] rounded-full bg-[#ffd52a] text-[#2c2d31] flex items-center justify-center font-['Wix_Madefor_Display'] font-bold text-[13px]">{u.login.slice(0, 2).toUpperCase()}</div>
+                <div className="size-[34px] rounded-full bg-[#e8e8ea] text-[#2c2d31] flex items-center justify-center font-['Wix_Madefor_Display'] font-bold text-[13px]">{u.login.slice(0, 2).toUpperCase()}</div>
                 <div className="flex flex-col md:flex-row md:items-center md:gap-[12px] min-w-0">
                   <span className="font-mono text-[14px] text-white truncate">{u.login}</span>
                   <span className="md:hidden font-['Wix_Madefor_Display'] text-[13px] text-[#a09f9d] truncate">{u.name}</span>
@@ -103,7 +103,7 @@ function UsersPage() {
                   <label key={f.k} className="flex flex-col gap-[6px]">
                     <span className="font-['Wix_Madefor_Display'] text-[12px] uppercase tracking-wide text-[#a09f9d]">{f.l}</span>
                     <input type={f.t} value={form[f.k]} onChange={e => setForm({ ...form, [f.k]: e.target.value })}
-                      className="bg-[#2a2d40] border border-white/8 rounded-[14px] px-[16px] py-[12px] font-['Wix_Madefor_Display'] text-[15px] text-white focus:outline-none focus:ring-2 focus:ring-[#ffd52a] focus:border-transparent" />
+                      className="bg-[#2a2d40] border border-white/8 rounded-[14px] px-[16px] py-[12px] font-['Wix_Madefor_Display'] text-[15px] text-white focus:outline-none focus:ring-2 focus:ring-[#e8e8ea] focus:border-transparent" />
                   </label>
                 ))}
                 <label className="flex flex-col gap-[8px]">
@@ -111,7 +111,7 @@ function UsersPage() {
                   <div className="flex gap-[8px]">
                     {ROLES.map(r => (
                       <button type="button" key={r} onClick={() => setForm({ ...form, role: r })}
-                        className={`flex-1 py-[10px] rounded-[12px] font-['Wix_Madefor_Display'] font-medium text-[14px] transition-colors ${form.role === r ? "bg-[#ffd52a] text-[#2c2d31]" : "bg-[#2a2d40] text-[#a09f9d] hover:text-white"}`}>
+                        className={`flex-1 py-[10px] rounded-[12px] font-['Wix_Madefor_Display'] font-medium text-[14px] transition-colors ${form.role === r ? "bg-[#e8e8ea] text-[#2c2d31]" : "bg-[#2a2d40] text-[#a09f9d] hover:text-white"}`}>
                         {r}
                       </button>
                     ))}
@@ -120,7 +120,7 @@ function UsersPage() {
               </div>
               <div className="flex gap-[10px] mt-[22px] justify-end">
                 <button type="button" onClick={() => setOpen(false)} className="px-[18px] py-[10px] rounded-[14px] font-['Wix_Madefor_Display'] text-[14px] text-[#a09f9d] hover:bg-[#2a2d40]">Отмена</button>
-                <button type="submit" className="bg-[#ffd52a] hover:bg-[#e6bf25] transition-colors px-[20px] py-[10px] rounded-[14px] font-['Wix_Madefor_Display'] font-bold text-[14px] text-white">Создать</button>
+                <button type="submit" className="bg-[#e8e8ea] hover:bg-[#cfcfd1] transition-colors px-[20px] py-[10px] rounded-[14px] font-['Wix_Madefor_Display'] font-bold text-[14px] text-white">Создать</button>
               </div>
             </UsMotion.form>
           </UsMotion.div>

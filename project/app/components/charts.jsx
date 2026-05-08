@@ -129,14 +129,14 @@ function PeriodBar({ active, setActive }) {
   return (
     <div className="flex w-full items-center justify-between px-[12px]">
       <csMotion.button whileTap={{ scale: 0.94 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}
-        className="bg-[#ffd52a] flex gap-[8px] h-[34px] items-center justify-center px-[14px] rounded-[17px] cursor-pointer hover:bg-[#e6bf25] transition-colors">
+        className="bg-[#e8e8ea] flex gap-[8px] h-[34px] items-center justify-center px-[14px] rounded-[17px] cursor-pointer hover:bg-[#cfcfd1] transition-colors">
         <ExportIcon />
         <span className="font-['Wix_Madefor_Display'] text-[13px] text-[#2c2d31] font-bold">Export</span>
       </csMotion.button>
       <div className="flex gap-[6px] items-center bg-[#2a2d40] rounded-[17px] p-[3px]">
         {periods.map((p) => (
           <button key={p} onClick={() => setActive(p)}
-            className={`flex h-[28px] items-center justify-center px-[14px] rounded-[14px] cursor-pointer transition-colors duration-200 ${active === p ? "bg-[#ffd52a] text-[#2c2d31] font-bold" : "text-[#a09f9d] hover:text-white"}`}>
+            className={`flex h-[28px] items-center justify-center px-[14px] rounded-[14px] cursor-pointer transition-colors duration-200 ${active === p ? "bg-[#e8e8ea] text-[#2c2d31] font-bold" : "text-[#a09f9d] hover:text-white"}`}>
             <span className="font-['DM_Sans'] text-[12px] font-medium">{p}</span>
           </button>
         ))}
@@ -212,14 +212,14 @@ function BrushSelector({ offset, windowSize, max, onChange, miniData, timestamps
           <div
             onPointerDown={(e) => startDrag(e, "move")}
             className="absolute top-0 bottom-0 cursor-grab active:cursor-grabbing"
-            style={{ left: `${left}%`, width: `${width}%`, boxShadow: "inset 0 0 0 1.5px #ffd52a", background: "rgba(255,213,42,0.12)" }}
+            style={{ left: `${left}%`, width: `${width}%`, boxShadow: "inset 0 0 0 1.5px #e8e8ea", background: "rgba(232,232,234,0.12)" }}
           >
             {/* Handles */}
             <div className="absolute top-0 bottom-0 left-0 w-[8px] flex items-center justify-center">
-              <div className="w-[3px] h-[18px] bg-[#ffd52a] rounded-full" />
+              <div className="w-[3px] h-[18px] bg-[#e8e8ea] rounded-full" />
             </div>
             <div className="absolute top-0 bottom-0 right-0 w-[8px] flex items-center justify-center">
-              <div className="w-[3px] h-[18px] bg-[#ffd52a] rounded-full" />
+              <div className="w-[3px] h-[18px] bg-[#e8e8ea] rounded-full" />
             </div>
           </div>
         </div>
@@ -246,7 +246,7 @@ function ChartsSection() {
 
   return (
     <div className="flex flex-col gap-[8px] items-stretch w-full h-full pt-[10px] pb-[8px] px-[16px] rounded-[36px] border border-white/5"
-      style={{ backgroundImage: "linear-gradient(-75deg, rgba(42, 45, 64, 0.7) 5%, rgba(255, 213, 42, 0.08) 98%)" }}>
+      style={{ backgroundImage: "linear-gradient(-75deg, rgba(42, 45, 64, 0.75) 5%, rgba(255, 255, 255, 0.04) 98%)" }}>
       <PeriodBar active={period} setActive={setPeriod} />
       <div className="flex flex-col gap-[6px]">
         <Chart title="Температура" yUnit="°C" period={period} timestamps={ts} timeLabels={tLabels} height={118}
@@ -260,7 +260,7 @@ function ChartsSection() {
         <Chart title="Вентиляторы" yUnit="rpm" period={period} timestamps={ts} timeLabels={tLabels} height={118}
           series={[
             { data: slice(fullData.fan1), stroke: "#FF8D28", label: "Вент. 1" },
-            { data: slice(fullData.fan2), stroke: "#FFD52A", label: "Вент. 2" },
+            { data: slice(fullData.fan2), stroke: "#E8E8EA", label: "Вент. 2" },
             { data: slice(fullData.fan3), stroke: "#6BCB77", label: "Вент. 3" },
           ]} />
       </div>
@@ -271,7 +271,7 @@ function ChartsSection() {
         onChange={setOffset}
         timestamps={fullData.timestamps}
         miniData={[
-          { data: fullData.temp1, stroke: "#FFD52A" },
+          { data: fullData.temp1, stroke: "#E8E8EA" },
           { data: fullData.humidity, stroke: "#00C3D0" },
           { data: fullData.fan1, stroke: "#FF8D28" },
         ]}

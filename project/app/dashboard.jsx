@@ -28,8 +28,7 @@ function DashboardShell() {
   return (
     <div className="relative w-[1920px] h-[1080px]" style={{
       backgroundImage: `
-        radial-gradient(at 75% 8%, rgba(255, 213, 42, 0.10), transparent 45%),
-        radial-gradient(at 20% 0%, rgba(255, 213, 42, 0.05), transparent 55%),
+        radial-gradient(at 75% 8%, rgba(255, 255, 255, 0.04), transparent 50%),
         linear-gradient(148deg, rgba(255,255,255,0) 62%, rgba(0,0,0,0.35) 92%),
         #2c2d31
       `
